@@ -1,27 +1,28 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+
+import { Hero } from './hero';
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+    selector: 'app-login',
+    styleUrls: ['./login.component.css'],
+    templateUrl: './login.component.html'
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent {
 
-  validateEmail(email: string) {
-    console.log(email);
-  }
+    // model = new Hero(18, 'Dr IQ', 'this.powers[0]', 'Chuck Overstreet');
+    model = {
+        user: '',
+        password: ''
+    }
 
-  validatePassword(pass: string) {
-    console.log(pass);
-  }
+    submitted = false;
 
-  sendForm(email: string, pass: string) {
-    console.log(email, pass);
-  }
+    // heroes: Hero[] = [];
 
-  constructor() { }
+    onSubmit() { this.submitted = true; }
 
-  ngOnInit() {
-  }
-
+    // newHero() {
+    //     // this.heroes.push(this.model);
+    //     this.model = new Hero(42, '', '');
+    // }
 }

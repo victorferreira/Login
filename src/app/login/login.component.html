@@ -1,29 +1,38 @@
-<div>
-  <div>
-    Totvs Logo
-  </div>
-  <div>
-      <form>
-        <div class="form-group">
-          <label for="email">Email</label>
-          <input type="email" class="form-control" id="email" [(ngModel)]="email" required>
+<div class="container">
+    <div [hidden]="submitted">
+        <h1>Login Form</h1>
+        <form (ngSubmit)="onSubmit()" #heroForm="ngForm">
+            <div class="form-group">
+                <label for="user">Name</label>
+                <input type="text" class="form-control" id="user" required [(ngModel)]="model.user" name="user" #user="ngModel">
+                <div [hidden]="user.valid || user.pristine" class="alert alert-danger">
+                    User is required
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" class="form-control" id="password" required [(ngModel)]="model.password" name="password" #password="ngModel">
+                <div [hidden]="password.valid || password.pristine" class="alert alert-danger">
+                    Password is required
+                </div>
+            </div>
+
+            <button type="submit" class="btn btn-success" [disabled]="!heroForm.form.valid">Submit</button>
+        </form>
+    </div>
+
+    <div [hidden]="!submitted">
+        <h2>You submitted the following:</h2>
+        <div class="row">
+            <div class="col-xs-3">User:</div>
+            <div class="col-xs-9  pull-left"> {{ model.user }}</div>
         </div>
-  
-        <div class="form-group">
-          <label for="password">Senha</label>
-          <input type="password" class="form-control" id="password" [(ngModel)]="password" required>
+        <div class="row">
+            <div class="col-xs-3">Password:</div>
+            <div class="col-xs-9 pull-left"> {{ model.password }}</div>
         </div>
-  
-        <button type="submit" class="btn btn-success">Login</button>
-  
-      </form>
-  </div>
-  <!-- <div>
-    <form>
-      <input #email (blur)="validateEmail(email.value)" type="email"><br>
-      <input #password (blur)="validatePassword(password.value)" type="password">
-      <br>
-      <button (click)="sendForm(email.value, password.value)">Login</button>
-    </form>
-  </div> -->
+        <br>
+        <button class="btn btn-primary" (click)="submitted=false">Edit</button>
+    </div>
 </div>
