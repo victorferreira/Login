@@ -1,20 +1,33 @@
 <div class="container">
+    <div align="center">
+        <img height="200" src="assets/logoRMS2017.jpg" alt="">
+    </div>
     <div [hidden]="submitted">
-        <h1>Login Form</h1>
+        <h1>RMS Login</h1>
         <form (ngSubmit)="onSubmit()" #heroForm="ngForm">
             <div class="form-group">
-                <label for="user">Name</label>
-                <input type="text" class="form-control" id="user" required [(ngModel)]="model.user" name="user" #user="ngModel">
-                <div [hidden]="user.valid || user.pristine" class="alert alert-danger">
+                <label for="username">Login</label>
+                <input type="text" class="form-control" id="username" required [(ngModel)]="loginData.username" name="username" #username="ngModel">
+                <div [hidden]="username.valid || username.pristine" class="alert alert-danger">
                     User is required
                 </div>
             </div>
 
             <div class="form-group">
-                <label for="password">Password</label>
-                <input type="password" class="form-control" id="password" required [(ngModel)]="model.password" name="password" #password="ngModel">
+                <label for="password">Senha</label>
+                <input type="password" class="form-control" id="password" required [(ngModel)]="loginData.password" name="password" #password="ngModel">
                 <div [hidden]="password.valid || password.pristine" class="alert alert-danger">
                     Password is required
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="context">Contexto</label>
+                <select class="form-control" id="context" required [(ngModel)]="loginData.context" name="context" #context="ngModel">
+                      <option *ngFor="let context of contexts" [value]="context">{{context}}</option>
+                    </select>
+                <div [hidden]="context.valid || context.pristine" class="alert alert-danger">
+                    Context is required
                 </div>
             </div>
 
@@ -26,11 +39,11 @@
         <h2>You submitted the following:</h2>
         <div class="row">
             <div class="col-xs-3">User:</div>
-            <div class="col-xs-9  pull-left"> {{ model.user }}</div>
+            <div class="col-xs-9  pull-left"> {{ loginData.username }}</div>
         </div>
         <div class="row">
             <div class="col-xs-3">Password:</div>
-            <div class="col-xs-9 pull-left"> {{ model.password }}</div>
+            <div class="col-xs-9 pull-left"> {{ loginData.password }}</div>
         </div>
         <br>
         <button class="btn btn-primary" (click)="submitted=false">Edit</button>

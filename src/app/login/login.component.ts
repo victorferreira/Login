@@ -1,6 +1,5 @@
+import { LoginService } from './login.service';
 import { Component } from '@angular/core';
-
-import { Hero } from './hero';
 
 @Component({
     selector: 'app-login',
@@ -9,20 +8,23 @@ import { Hero } from './hero';
 })
 export class LoginComponent {
 
-    // model = new Hero(18, 'Dr IQ', 'this.powers[0]', 'Chuck Overstreet');
-    model = {
-        user: '',
-        password: ''
-    }
-
+    loginData = {
+        grant_type: 'password',
+        username: '',
+        password: '',
+        context: ''
+    };
+    contexts: string[] = [];
     submitted = false;
 
-    // heroes: Hero[] = [];
+    onSubmit() {
+        this.login.auth(this.loginData);
+        this.submitted = true;
+    }
 
-    onSubmit() { this.submitted = true; }
-
-    // newHero() {
-    //     // this.heroes.push(this.model);
-    //     this.model = new Hero(42, '', '');
-    // }
+    constructor(private login: LoginService) {
+        login.getContextList()
+            .then(result => result.map(item => this.contexts.push(item.name)))
+            .catch(error => console.error('Failed attempt to get the context list', Error(error)));
+    }
 }

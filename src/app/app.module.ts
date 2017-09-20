@@ -1,3 +1,4 @@
+import { LoginService } from './login/login.service';
 import { HttpModule } from '@angular/http'
 import { SwService } from './sw/sw.service';
 import { BrowserModule } from '@angular/platform-browser';
@@ -9,12 +10,14 @@ import { ThfModule } from '@totvs/thf-web';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { SwComponent } from './sw/sw.component';
+import { MenuComponent } from './menu/menu.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    SwComponent
+    SwComponent,
+    MenuComponent
   ],
   imports: [
     FormsModule,
@@ -22,7 +25,7 @@ import { SwComponent } from './sw/sw.component';
     ThfModule,
     HttpModule
   ],
-  providers: [SwService],
+  providers: [SwService, LoginService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
