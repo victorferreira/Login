@@ -4,6 +4,7 @@ import { SwService } from './sw/sw.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule }   from '@angular/forms';
+import { Routes, RouterModule } from '@angular/router'
 
 import { ThfModule } from '@totvs/thf-web';
 
@@ -23,7 +24,8 @@ import { MenuComponent } from './menu/menu.component';
     FormsModule,
     BrowserModule,
     ThfModule,
-    HttpModule
+    HttpModule,
+    RouterModule
   ],
   providers: [SwService, LoginService],
   bootstrap: [AppComponent]

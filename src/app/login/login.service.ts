@@ -6,32 +6,35 @@ import 'rxjs/add/operator/toPromise';
 @Injectable()
 export class LoginService {
 
-  loginUrl = 'http://localhost:60403/Token/'
-  tokenKey = 'accessToken';
-  results;
+  serviceUrl = 'http://10.71.4.153/website/api/usuarios/'
+  tokenKey = 'rmsAccessToken';
 
   getContextList(): Promise<any> {
-    return this.http.get('http://swapi.co/api/people')
+    return this.http.get('http://10.71.4.153/website/api/contextos/')
       .toPromise()
-      .then(response => response.json().results)
+      .then(response => response.json())
       .catch(this.handleError)
   }
 
   auth(loginData): Promise<any> {
-    return this.http.post(this.loginUrl, loginData)
+    return this.http.get(this.serviceUrl +  loginData.username + '/' + loginData.password + '/' + loginData.context)
       .toPromise()
       .then(response => {
-        this.results = response.json();
-        console.log(this.results);
-        // Cache the access token in session storage.
-        // sessionStorage.setItem(this.tokenKey, this.results.access_token);
-        return this.results;
+        if(response.json().Logado)
+          sessionStorage.setItem(this.tokenKey, response.json().Sessao)
       })
       .catch(this.handleError);
   }
 
   logOut() {
-    sessionStorage.removeItem(this.tokenKey);
+    this.http.get('http://10.71.4.153/website/api/logoff/' + sessionStorage.getItem(this.tokenKey))
+      .toPromise()
+      .then(response => {
+        console.log(response);
+        sessionStorage.removeItem(this.tokenKey);
+      })
+      .catch(this.handleError);
+    // sessionStorage.removeItem(this.tokenKey);
   }
 
   private handleError(error: any): Promise<any> {

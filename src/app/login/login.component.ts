@@ -24,7 +24,7 @@ export class LoginComponent {
 
     constructor(private login: LoginService) {
         login.getContextList()
-            .then(result => result.map(item => this.contexts.push(item.name)))
+            .then(result => result.map(item => this.contexts.push(item.Descricao)))
             .catch(error => console.error('Failed attempt to get the context list', Error(error)));
     }
 }
