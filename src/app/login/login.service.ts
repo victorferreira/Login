@@ -8,33 +8,31 @@ export class LoginService {
 
   serviceUrl = 'http://10.71.4.153/website/api/usuarios/'
   tokenKey = 'rmsAccessToken';
+  user = null;
 
   getContextList(): Promise<any> {
-    return this.http.get('http://10.71.4.153/website/api/contextos/')
+    return this.http.get('http://10.71.4.153/website/api/contexts/')
       .toPromise()
       .then(response => response.json())
       .catch(this.handleError)
   }
 
   auth(loginData): Promise<any> {
-    return this.http.get(this.serviceUrl +  loginData.username + '/' + loginData.password + '/' + loginData.context)
+    return this.http.post('http://10.71.4.153/website/api/login/', loginData)
       .toPromise()
       .then(response => {
-        if(response.json().Logado)
-          sessionStorage.setItem(this.tokenKey, response.json().Sessao)
+        if(response.json().Logado){
+          this.user = response.json();
+        }
       })
       .catch(this.handleError);
   }
 
   logOut() {
-    this.http.get('http://10.71.4.153/website/api/logoff/' + sessionStorage.getItem(this.tokenKey))
+    this.user = null;
+    return this.http.get('http://10.71.4.153/website/api/logoff/' + sessionStorage.getItem(this.tokenKey))
       .toPromise()
-      .then(response => {
-        console.log(response);
-        sessionStorage.removeItem(this.tokenKey);
-      })
       .catch(this.handleError);
-    // sessionStorage.removeItem(this.tokenKey);
   }
 
   private handleError(error: any): Promise<any> {

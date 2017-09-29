@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { LoginService } from './login.service';
 import { Component } from '@angular/core';
 
@@ -8,21 +9,18 @@ import { Component } from '@angular/core';
 })
 export class LoginComponent {
 
-    loginData = {
-        grant_type: 'password',
-        username: '',
-        password: '',
-        context: ''
-    };
+    loginData = {};
     contexts: string[] = [];
     submitted = false;
 
     onSubmit() {
-        this.login.auth(this.loginData);
+        this.login.auth(this.loginData)
+            .then(()     => this.router.navigate(['/menu']))
+            .catch(error => console.error('Failed attempt to login', Error(error)));
         this.submitted = true;
     }
 
-    constructor(private login: LoginService) {
+    constructor(private login: LoginService, private router: Router) {
         login.getContextList()
             .then(result => result.map(item => this.contexts.push(item.Descricao)))
             .catch(error => console.error('Failed attempt to get the context list', Error(error)));

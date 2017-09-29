@@ -13,6 +13,13 @@ import { LoginComponent } from './login/login.component';
 import { SwComponent } from './sw/sw.component';
 import { MenuComponent } from './menu/menu.component';
 
+const appRoutes = [
+  { path: '', redirectTo: 'login', pathMatch: 'full' },
+  { path: 'login', component: LoginComponent },
+  { path: 'menu', component: MenuComponent },
+  { path: '**', redirectTo: 'login' }
+]
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -25,7 +32,7 @@ import { MenuComponent } from './menu/menu.component';
     BrowserModule,
     ThfModule,
     HttpModule,
-    RouterModule
+    RouterModule.forRoot(appRoutes)
   ],
   providers: [SwService, LoginService],
   bootstrap: [AppComponent]

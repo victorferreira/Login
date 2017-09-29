@@ -1,33 +1,45 @@
-<div class="container-fluid">
+<div class="container">
+  <div align="center">
+    <img height="200" src="assets/logoRMS2017.jpg" alt="">
+  </div>
   <div class="row">
-      <div class="card card-inverse" style="background-color: #333; border-color: #333;">
-          <div class="card-block">
-            <h3 class="card-title">Special title treatment</h3>
-            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-            <a href="#" class="btn btn-primary">Go somewhere</a>
-          </div>
-        </div>
-    <div class="card card-inverse text-center col-12 col-sm-12 col-md-6 col-lg-4 col-xl-4">
-
-      <!-- Image -->
-      <img class="card-img-top" src="http://t.wallpaperweb.org/wallpaper/computer/1920x1200/Secrets_1920x1200.jpg" alt="Photo of sunset">
-
-      <!-- Text Overlay -->
-      <div class="card-img-overlay">
-        <h4 class="card-title">Desossa</h4>
-        <p class="card-text">Is this the end?</p>
+    <div class="col-md-12">
+      <h1><strong>Olá, {{user}}</strong></h1>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-4">
+      <div class="tile blue" style="background-color: rgb(16, 170, 204)">
+        <h3 class="title"><a href="http://ssasfluigd01/RMS/Aplicacoes/flashvendas/">Flash de Vendas</a></h3>
+        <p>Click here to acess</p>
       </div>
     </div>
-    <div class="card card-inverse text-center col-12 col-sm-12 col-md-6 col-lg-4 col-xl-4">
-
-      <!-- Image -->
-      <img class="card-img-top" src="http://t.wallpaperweb.org/wallpaper/computer/1920x1200/Secrets_1920x1200.jpg" alt="Photo of sunset">
-
-      <!-- Text Overlay -->
-      <div class="card-img-overlay">
-        <h4 class="card-title">Flash de Vendas</h4>
-        <p class="card-text">Is this the end?</p>
+    <div class="col-sm-4">
+      <div class="tile blue" style="background-color: rgb(67, 133, 245)">
+        <h3 class="title"><a href="http://ssasfluigd01/RMS/Aplicacoes/inStore/#/">Consulta Produtos</a></h3>
+        <p>Click here to acess</p>
+      </div>
+    </div>
+    <div class="col-sm-4">
+      <div class="tile blue" style="background-color: rgb(62, 92, 198)">
+        <h3 class="title"><a href="http://ssasfluigd01/RMS/Aplicacoes/Desossa/">Desossa</a></h3>
+        <p>Click here to acess</p>
       </div>
     </div>
   </div>
+  <div class="row">
+    <div class="col-sm-4">
+      <div class="tile blue" style="background-color: rgb(126, 55, 149)">
+        <h3 class="title"><a href="#">Vouchers</a></h3>
+        <p>Click here to acess</p>
+      </div>
+    </div>
+    <!-- <div class="col-sm-4">
+        <div class="tile blue">
+          <h3 class="title">Blue Tile</h3>
+          <p>Hello Blue, this is a colored tile.</p>
+        </div>
+      </div>     -->
+  </div>
+  <button class="btn btn-primary" (click)="logOut()">Log Out!</button>
 </div>

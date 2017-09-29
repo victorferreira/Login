@@ -2,12 +2,11 @@
     <div align="center">
         <img height="200" src="assets/logoRMS2017.jpg" alt="">
     </div>
-    <div [hidden]="submitted">
-        <h1>RMS Login</h1>
+    <div>
         <form (ngSubmit)="onSubmit()" #heroForm="ngForm">
             <div class="form-group">
                 <label for="username">Login</label>
-                <input type="text" class="form-control" id="username" required [(ngModel)]="loginData.username" name="username" #username="ngModel">
+                <input type="text" class="form-control" id="username" required [(ngModel)]="loginData.user" name="username" #username="ngModel">
                 <div [hidden]="username.valid || username.pristine" class="alert alert-danger">
                     User is required
                 </div>
@@ -15,10 +14,7 @@
 
             <div class="form-group">
                 <label for="password">Senha</label>
-                <input type="password" class="form-control" id="password" required [(ngModel)]="loginData.password" name="password" #password="ngModel">
-                <div [hidden]="password.valid || password.pristine" class="alert alert-danger">
-                    Password is required
-                </div>
+                <input type="password" class="form-control" id="password" [(ngModel)]="loginData.password" name="password" #password="ngModel">
             </div>
 
             <div class="form-group">
@@ -33,19 +29,5 @@
 
             <button type="submit" class="btn btn-success" [disabled]="!heroForm.form.valid">Submit</button>
         </form>
-    </div>
-
-    <div [hidden]="!submitted">
-        <h2>You submitted the following:</h2>
-        <div class="row">
-            <div class="col-xs-3">User:</div>
-            <div class="col-xs-9  pull-left"> {{ loginData.username }}</div>
-        </div>
-        <div class="row">
-            <div class="col-xs-3">Password:</div>
-            <div class="col-xs-9 pull-left"> {{ loginData.password }}</div>
-        </div>
-        <br>
-        <button class="btn btn-primary" (click)="submitted=false; login.logOut();">Edit</button>
     </div>
 </div>
